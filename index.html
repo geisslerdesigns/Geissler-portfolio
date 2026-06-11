@@ -97,7 +97,7 @@
     .art-hands {
       width: 120vw;
       max-width: none;
-      top: 15%;
+      top: 50%;
       right: -30vw;
       transform: none;
       animation: floatHands 9s ease-in-out infinite;
@@ -828,12 +828,12 @@
     }
 
     @media (max-width: 600px) {
-      .art-hands { width: 160vw; right: -30vw; top: 5%; opacity: 0.1; }
+      .nav-menu-btn { display: flex; }
+      .art-hands { width: 250vw; right: -110vw; top: 50%; opacity: 0.3; }
       .art-hands-2 { display: none; }
       .section-wrap { padding: 14vw 5vw; }
       .section-num { font-size: clamp(4rem, 20vw, 7rem); }
       .section-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
-      .art-hands { opacity: 0.06; }
       .cursor, .cursor-ring { display: none; }
       .hero-eyebrow { font-size: 0.68rem; }
       #hero { padding: 0 5vw 5vh; }
@@ -854,6 +854,7 @@
       .modal { max-height: 95vh; }
       .modal-title { font-size: 1.6rem; }
       .marquee-track { animation-duration: 18s; }
+      .h1.hero-headline {position: absolute; top: 25vh;}
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1012,7 +1013,6 @@
 
     /* ── MOBILE NAV ── */
     .nav-menu-btn {
-      display: none;
       flex-direction: column;
       gap: 5px;
       cursor: pointer;
@@ -1020,6 +1020,9 @@
       border: none;
       padding: 4px;
       z-index: 200;
+      color: black;
+      min-width: 44px;
+      min-height: 44px;
     }
     .nav-menu-btn span {
       display: block;
@@ -1035,7 +1038,7 @@
       position: fixed;
       inset: 0;
       background: var(--white);
-      z-index: 150;
+      z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1044,6 +1047,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
+      color: black;
     }
     .mobile-nav.open { opacity: 1; pointer-events: all; }
     .mobile-nav a {
