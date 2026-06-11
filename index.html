@@ -97,9 +97,9 @@
     .art-hands {
       width: 120vw;
       max-width: none;
-      top: 50%;
+      top: 15%;
       right: -30vw;
-      transform: translateY(-50%);
+      transform: none;
       animation: floatHands 9s ease-in-out infinite;
     }
 
@@ -828,7 +828,7 @@
     }
 
     @media (max-width: 600px) {
-      .art-hands { width: 100vw; right: 0; opacity: 0.1; }
+      .art-hands { width: 160vw; right: -30vw; top: 5%; opacity: 0.1; }
       .art-hands-2 { display: none; }
       .section-wrap { padding: 14vw 5vw; }
       .section-num { font-size: clamp(4rem, 20vw, 7rem); }
@@ -1056,10 +1056,6 @@
       transition: color 0.2s;
     }
     .mobile-nav a:hover { color: var(--red); }
-    @media (min-width: 901px) {
-      .nav-menu-btn { display: none !important; }
-      .mobile-nav { display: none !important; }
-    }
 
   </style>
 </head>
@@ -1095,7 +1091,6 @@
 
     <!-- Your drawings floating in the background -->
     <img src="head.png" class="art-float art-hands" alt="">
-    <img src="hands.png" class="art-float art-hands-2" alt="">
 
 
     <!-- Dot grid -->
