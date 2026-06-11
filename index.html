@@ -202,7 +202,7 @@
       color: var(--gray);
       margin-bottom: 1.5rem;
       position: relative;
-      top: -10rem;
+      top: -0.7vh;
       z-index: 2;
     }
 
@@ -217,7 +217,7 @@
       max-width: 75vw;
       margin-bottom: 3rem;
       position: relative;
-      top: -1.3em;
+      top: -1vh;
       z-index: 2;
     }
 
@@ -809,7 +809,7 @@
     @media (max-width: 900px) {
       nav { padding: 1.5rem 5vw; }
       .nav-links { display: none; }
-      .nav-menu-btn { display: flex; }
+      .nav-menu-btn { display: none; }
       .hero-location { display: none; }
       .hero-scroll-hint { display: none; }
       h1.hero-headline { font-size: clamp(3rem, 13vw, 5.5rem); max-width: 90vw; }
@@ -838,7 +838,7 @@
       .section-num { font-size: clamp(4rem, 20vw, 7rem); }
       .section-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
       .cursor, .cursor-ring { display: none; }
-      .hero-eyebrow { font-size: 0.68rem; top: -13rem; }
+      .hero-eyebrow { font-size: 0.68rem; top: -16vh; }
       #hero { padding: 0 5vw 5vh; }
       .hero-ctas { flex-direction: column; align-items: flex-start; gap: 1rem; }
       .projects-mosaic { grid-template-columns: 1fr 1fr; grid-auto-rows: 42vw; gap: 0.5rem; }
@@ -858,8 +858,12 @@
       .modal-title { font-size: 1.6rem; }
       .marquee-track { animation-duration: 18s; }
       h1.hero-headline em {top: -0.6rem;}
-      h1.hero-headline { top: -14rem; line-height: 1.3em; }
+      h1.hero-headline { top: -18vh; line-height: 1.3em; }
       .dot-cluster {top: 68%; bottom: 26%; }
+    }
+
+    @media (min-width: 900px) {
+      .nav-menu-btn {display: none;}
     }
 
     @media (prefers-reduced-motion: reduce) {
