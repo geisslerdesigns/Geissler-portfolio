@@ -935,29 +935,53 @@
       flex-direction: column;
       gap: 1rem;
     }
-    .modal-imgs img,
-    .modal-imgs video {
+
+    .modal-main-img {
       width: 100%;
-      height: auto;
+      aspect-ratio: 16/9;
+      background: #f2f0ed;
       border-radius: 10px;
-      display: block;
+      overflow: hidden;
     }
-    .modal-imgs .img-row {
-      display: flex;
-      gap: 1rem;
-      align-items: stretch;
-    }
-    .modal-imgs .img-row img,
-    .modal-imgs .img-row video {
-      flex: 1 1 auto;
-      width: auto;
-      min-width: 0;
-      max-width: 100%;
-      height: auto;
+
+    .modal-main-img img,
+    .modal-main-img video {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
-      border-radius: 10px;
       display: block;
     }
+
+    .modal-thumbs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .modal-thumb {
+      width: 80px;
+      height: 56px;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+      background: #f2f0ed;
+    }
+
+    .modal-thumb img,
+    .modal-thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+
+    .modal-thumb.active { border-color: #C8372D; }
+    .modal-thumb:hover { border-color: #888; }
+    
     .modal-body {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1693,18 +1717,45 @@
       const container = document.getElementById('modalImgs');
       container.innerHTML = '';
 
-      // First image always full width
-      const first = makeEl(p.images[0], p.title);
-      container.appendChild(first);
+      // Big main viewer
+      const main = document.createElement('div');
+      main.className = 'modal-main-img';
+      const firstEl = makeEl(p.images[0], p.title);
+      main.appendChild(firstEl);
+      container.appendChild(main);
 
-      // Remaining images in a row
+      // Thumbnails
       if (p.images.length > 1) {
-        const row = document.createElement('div');
-        row.className = 'img-row';
-        p.images.slice(1).forEach(src => {
-          row.appendChild(makeEl(src, p.title));
+        const thumbRow = document.createElement('div');
+        thumbRow.className = 'modal-thumbs';
+
+        p.images.forEach((src, i) => {
+          const thumb = document.createElement('div');
+          thumb.className = 'modal-thumb' + (i === 0 ? ' active' : '');
+
+          if (/\.(mp4|webm|mov)$/i.test(src)) {
+            const v = document.createElement('video');
+            v.src = src;
+            v.muted = true;
+            thumb.appendChild(v);
+          } else {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = p.title;
+            thumb.appendChild(img);
+          }
+
+          thumb.addEventListener('click', () => {
+            main.innerHTML = '';
+            main.appendChild(makeEl(src, p.title));
+            thumbRow.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+          });
+
+          thumbRow.appendChild(thumb);
         });
-        container.appendChild(row);
+
+        container.appendChild(thumbRow);
       }
 
       document.getElementById('modalBackdrop').classList.add('open');
